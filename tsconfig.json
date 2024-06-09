@@ -1,10 +1,20 @@
-{
+/** @type {import('tailwindcss').Config} */{
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "extends": "expo/tsconfig.base",
-  "include": ["global.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": [
+    "global.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/constants/index.js",
+    "src/constants/icons.js",
+    "src/app/index.tsx",
+    "src/constants/images.js"
+  ]
 }
