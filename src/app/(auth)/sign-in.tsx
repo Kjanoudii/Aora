@@ -13,6 +13,7 @@ import { images } from "../../constants";
 import * as Yup from "yup";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
+import { Link } from "expo-router";
 const SignIn = () => {
   
   const [email, setEmail] = useState("");
@@ -52,13 +53,13 @@ const SignIn = () => {
             >
               {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <View>
-                  <View className="space-y-2 my-3">
+                  <View className="space-y-2 my-5">
                     <Text className="text-base text-gray-100 font-pmedium">
                       Email:
                     </Text>
                     <View
                       className="w-full h-16 px-4 bg-black-100 rounded-2xl border-2
-                      border-black-200 focus:border-secondary flex flex-row items-center"
+                      border-gray-700 focus:border-secondary flex flex-row items-center"
                     >
                       <TextInput
                         className="flex-1 text-white font-psemibold text-base "
@@ -68,7 +69,11 @@ const SignIn = () => {
                         keyboardType="email-address"
                       />
                     </View>
-                    <ErrorMessage name="email" component={Text} />
+                    <ErrorMessage
+                      name="email"
+                      component={Text}
+                      className="text-red-800"
+                    />
                   </View>
                   <View className="space-y-2 my-3">
                     <Text className="text-base text-gray-100 font-pmedium">
@@ -76,7 +81,7 @@ const SignIn = () => {
                     </Text>
                     <View
                       className="w-full h-16 px-4 bg-black-100 rounded-2xl border-2
-                      border-black-200 focus:border-secondary flex flex-row items-center"
+                      border-gray-700 focus:border-secondary flex flex-row items-center"
                     >
                       <TextInput
                         className="flex-1 text-white font-psemibold text-base"
@@ -86,7 +91,11 @@ const SignIn = () => {
                         secureTextEntry={true}
                       />
                     </View>
-                    <ErrorMessage name="password" component={Text} />
+                    <ErrorMessage
+                      name="password"
+                      component={Text}
+                      className="text-red-800"
+                    />
                   </View>
                   <CustomButton
                     title="Sign In"
@@ -96,6 +105,17 @@ const SignIn = () => {
                 </View>
               )}
             </Formik>
+            <View className="flex justify-center pt-5 flex-row gap-2">
+              <Text className="text-lg text-gray-100 font-pregular">
+                Don't have an account?
+              </Text>
+              <Link
+                href="/sign-up"
+                className="text-lg font-psemibold text-secondary"
+              >
+                Signup
+              </Link>
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>

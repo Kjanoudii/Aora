@@ -61,8 +61,8 @@ export default function Page() {
             />
           </View>
         </ScrollView>
-        <StatusBar backgroundColor="#161622" style="light" />
       </SafeAreaView>
+        <StatusBar backgroundColor="#161622" style="light" />
     </View>
   );
 }
