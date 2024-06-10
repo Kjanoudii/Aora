@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { createUser } from "../../../lib/appwrite";
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Image } from "react-native";
@@ -14,37 +15,44 @@ import * as Yup from "yup";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import { Link } from "expo-router";
-const SignIn = () => {
-  
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const initialValues = {
+    username:"",
     email: "",
     password: "",
   };
-   const validation = Yup.object().shape({
-     email: Yup.string().email("Invalid email").required("Email is required"),
-     password: Yup.string().required("Password is required"),
-   });
- const submit = (data: any, {resetForm} ) => {
-   console.log(data);
- resetForm();
- };
+  const validation = Yup.object().shape({
+    username: Yup.string().required("Enter your username"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
+  const submit = (data, { resetForm }) => {
+     const { email, password, username } = data;
+
+    createUser(email, password, username)
+
+    console.log(email, password, username);
+    resetForm();
+  };
 
   return (
     <View className="bg-primary h-full">
       <SafeAreaView className="bg-primary h-full">
         <ScrollView>
-          <View className="w-full h-full px-4 justify-center my-6">
+          <View className="w-full min-h-[85vh] px-4 justify-center my-6">
             <Image
               source={images.logo}
               resizeMode="contain"
               className="w-[115px] h-[35px]"
             />
             <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
-              Log in to Aora
+              Sign Up With Aora
             </Text>
             <Formik
               initialValues={initialValues}
@@ -54,6 +62,27 @@ const SignIn = () => {
               {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <View>
                   <View className="space-y-2 my-5">
+                    <Text className="text-base text-gray-100 font-pmedium">
+                      Username:
+                    </Text>
+                    <View
+                      className="w-full h-16 px-4 bg-black-100 rounded-2xl border-2
+                      border-gray-700 focus:border-secondary flex flex-row items-center"
+                    >
+                      <TextInput
+                        className="flex-1 text-white font-psemibold text-base "
+                        onChangeText={handleChange("username")}
+                        onBlur={handleBlur("username")}
+                        value={values.username}
+                      />
+                    </View>
+                    <ErrorMessage
+                      name="username"
+                      component={Text}
+                      className="text-red-800"
+                    />
+                  </View>
+                  <View className="space-y-2 my-3">
                     <Text className="text-base text-gray-100 font-pmedium">
                       Email:
                     </Text>
@@ -98,22 +127,23 @@ const SignIn = () => {
                     />
                   </View>
                   <CustomButton
-                    title="Sign In"
+                    title="Sign up"
                     handlePress={handleSubmit} // Ensure handleSubmit is used here
                     containerStyles="mt-7"
+                    isLoading={isSubmitting}
                   />
                 </View>
               )}
             </Formik>
             <View className="flex justify-center pt-5 flex-row gap-2">
               <Text className="text-lg text-gray-100 font-pregular">
-                Don't have an account?
+               already have an account?
               </Text>
               <Link
-                href="/sign-up"
+                href="/sign-in"
                 className="text-lg font-psemibold text-secondary"
               >
-                Signup
+               Login
               </Link>
             </View>
           </View>
@@ -123,4 +153,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

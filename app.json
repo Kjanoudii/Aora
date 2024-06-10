@@ -7,13 +7,15 @@
       "output": "static",
       "bundler": "metro"
     },
+    "android":{
+      "package":"com.khaled.aora",
+      "jsEngine": "hermes"
+    },
     "plugins": [
       "expo-router"
     ],
     "name": "my-app",
-    "slug": "my-app",
-    "android": {
-      "package": "com.anonymous.myapp"
-    }
+    "slug": "my-app"
+   
   }
 }

@@ -11,11 +11,16 @@ import { StatusBar } from "expo-status-bar";
 // import logo from "./logo.png";
 import { Redirect, router } from "expo-router";
 import CustomButton from "@/components/CustomButton";
+import {createUser} from "../../lib/appwrite"
 // import { useGlobalContext } from "../context/GlobalProvider";
 const { images } = require("../constants");
 // const { useGlobalContext } = require("../context/GlobalProvider");
+
 export default function Page() {
   useEffect(() => {}, []);
+
+
+  
   console.log(images.logo);
   //  const { loading, isLogged } = useGlobalContext();
 
@@ -58,6 +63,7 @@ export default function Page() {
               title="Continue with Email"
               handlePress={() => router.push("/sign-in")}
               containerStyles="w-full mt-7"
+              
             />
           </View>
         </ScrollView>

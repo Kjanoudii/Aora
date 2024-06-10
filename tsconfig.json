@@ -14,7 +14,7 @@
     "**/*.tsx",
     "src/constants/index.js",
     "src/constants/icons.js",
-    "src/app/index.tsx",
+    "src/app/index.jsx",
     "src/constants/images.js"
-  ]
+, "src/app/(auth)/sign-in.jsx", "src/app/_layout.jsx", "src/app/(auth)/sign-up.jsx", "src/components/CustomButton.jsx"  ]
 }
