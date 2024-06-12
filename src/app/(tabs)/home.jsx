@@ -17,6 +17,9 @@ const Home = () => {
 
   const [refreshing, setRefreshing] = useState(false);
 
+
+
+  
   const onRefresh = async () => {
     setRefreshing(true);
     await refetch();
@@ -28,14 +31,7 @@ const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#2b2b2b" }}>
       <View style={{ flex: 1, backgroundColor: "#2b2b2b" }}>
-        {/* <Video
-          source={{ uri: "https://cloud.appwrite.io/v1/storage/buckets/66671678001265467d63/files/6668968c0035d91ab721/view?project=6666209d001bdff9cdd9&mode=admin" }}
-          style={{ width: "100%", height: 240, borderRadius: 16, marginTop: 12 }}
-          resizeMode={ResizeMode.CONTAIN}
-          useNativeControls
-          shouldPlay
-          onError={(error) => console.log("Video error:", error)}
-        /> */}
+        
         <FlatList
           data={posts}
           keyExtractor={(item) => item.$id}

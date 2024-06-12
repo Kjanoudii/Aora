@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ResizeMode, Video } from "expo-av";
 import * as Animatable from "react-native-animatable";
+import { View } from "react-native";
 import {
   FlatList,
   Image,
@@ -33,14 +34,21 @@ const TrendingItem = ({ activeItem, item }) => {
 
   return (
     <Animatable.View
-      className="mr-5"
+      className="mr-2 "
       animation={activeItem === item.$id ? zoomIn : zoomOut}
       duration={500}
     >
       {play ? (
         <Video
+          className=" z-50 "
           source={{ uri: item.video }}
-          className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+          style={{
+            width: 180,
+            height: 240,
+            borderRadius: 16,
+            marginTop: 12,
+            zIndex: 99,
+          }}
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
@@ -87,6 +95,7 @@ const Trending = ({ posts }) => {
   return (
     <FlatList
       data={posts}
+     className="w-full  "
       horizontal
       keyExtractor={(item) => item.$id}
       renderItem={({ item }) => (
