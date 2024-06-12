@@ -1,15 +1,18 @@
 import "../global.css";
 import { Slot, SplashScreen, Stack } from "expo-router";
-import Header from "@/components/Header";
+import GlobalProvider from "../context/GlobalProvider";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+
 export default function Layout() {
   SplashScreen.preventAutoHideAsync();
+
   const [fontsLoaded, error] = useFonts({
     "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-ExtraBold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
-    "Poppins-ExtraLight": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    // "Poppins-ExtraLight": require("../assets/fonts/Poppins-ExtraLight.ttf"),
     "Poppins-Light": require("../assets/fonts/Poppins-Light.ttf"),
     "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
@@ -19,16 +22,24 @@ export default function Layout() {
 
   useEffect(() => {
     if (error) throw error;
-    if (fontsLoaded) SplashScreen.hideAsync();
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
   }, [fontsLoaded, error]);
 
   if (!fontsLoaded && !error) return null;
+
   return (
-    <Stack>
-      {/* <Header /> */}
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    // <NavigationContainer>
+    <GlobalProvider>
+      <Stack>
+        {/* <Header /> */}
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
+      </Stack>
+    </GlobalProvider>
+    // </NavigationContainer>
   );
 }

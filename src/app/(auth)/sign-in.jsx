@@ -5,35 +5,49 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { useGlobalContext } from "@/context/GlobalProvider";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Image } from "react-native";
+import { Image, Alert } from "react-native";
 import { images } from "../../constants";
 import * as Yup from "yup";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { signIn } from "../../../lib/appwrite";
+
 const SignIn = () => {
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { setUser, setIsLogged } = useGlobalContext();
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  
+  // const navitage = useNavigation()
   const initialValues = {
     email: "",
     password: "",
   };
-   const validation = Yup.object().shape({
-     email: Yup.string().email("Invalid email").required("Email is required"),
-     password: Yup.string().required("Password is required"),
-   });
- const submit = (data , {resetForm} ) => {
-   console.log(data);
- resetForm();
- };
+  const validation = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
+
+  const submit = async (data, { resetForm }) => {
+    const { email, password } = data;
+
+    setIsLogged(true);
+    try {
+      await signIn(email, password);
+      setUser(result);
+      console.log(email, password);
+      router.replace("/home");
+      resetForm();
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    }
+  };
 
   return (
     <View className="bg-primary h-full">

@@ -9,21 +9,22 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { createUser } from "../../../lib/appwrite";
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Image } from "react-native";
+import { useGlobalContext } from "@/context/GlobalProvider";
+import { Image, Alert } from "react-native";
 import { images } from "../../constants";
 import * as Yup from "yup";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const { setUser, setIsLogged } = useGlobalContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const initialValues = {
-    username:"",
+    username: "",
     email: "",
     password: "",
   };
@@ -32,13 +33,21 @@ const SignUp = () => {
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
-  const submit = (data, { resetForm }) => {
-     const { email, password, username } = data;
 
-    createUser(email, password, username)
+  const submit = async (data, { resetForm }) => {
+    const { email, password, username } = data;
 
-    console.log(email, password, username);
-    resetForm();
+    try {
+      await createUser(email, password, username);
+
+      setUser(result);
+      setIsLogged(true);
+      console.log(email, password, username);
+      // router.replace('/home')
+      resetForm();
+    } catch (error) {
+        Alert.alert("Error", error.message);
+    } 
   };
 
   return (
@@ -137,13 +146,13 @@ const SignUp = () => {
             </Formik>
             <View className="flex justify-center pt-5 flex-row gap-2">
               <Text className="text-lg text-gray-100 font-pregular">
-               already have an account?
+                already have an account?
               </Text>
               <Link
                 href="/sign-in"
                 className="text-lg font-psemibold text-secondary"
               >
-               Login
+                Login
               </Link>
             </View>
           </View>

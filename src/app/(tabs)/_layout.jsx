@@ -3,7 +3,7 @@ import React from "react";
 import { Tabs, Redirect } from "expo-router";
 import { icons } from "../../constants";
 
-const TabIcon = ({ icon, color, name, focused }): any => {
+const TabIcon = ({ icon, color, name, focused }) => {
   return (
     <View className="items-center justify-center gap-2">
       <Image source={icon} 
@@ -38,7 +38,7 @@ const TabsLayout = () => {
           options={{
             title: "Home",
             headerShown: false,
-            tabBarIcon: ({ color, focused }): any => {
+            tabBarIcon: ({ color, focused }) => {
               return (
                 <TabIcon
                   icon={icons.home}
@@ -55,7 +55,7 @@ const TabsLayout = () => {
           options={{
             title: "Bookmark",
             headerShown: false,
-            tabBarIcon: ({ color, focused }): any => {
+            tabBarIcon: ({ color, focused })=> {
               return (
                 <TabIcon
                   icon={icons.bookmark}
@@ -72,7 +72,7 @@ const TabsLayout = () => {
           options={{
             title: "create",
             headerShown: false,
-            tabBarIcon: ({ color, focused }): any => {
+            tabBarIcon: ({ color, focused }) => {
               return (
                 <TabIcon
                   icon={icons.plus}
@@ -89,7 +89,7 @@ const TabsLayout = () => {
           options={{
             title: "Profile",
             headerShown: false,
-            tabBarIcon: ({ color, focused }): any => {
+            tabBarIcon: ({ color, focused }) => {
               return (
                 <TabIcon
                   icon={icons.profile}

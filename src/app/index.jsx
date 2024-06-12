@@ -1,17 +1,18 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, Image } from "react-native";
 import {
   useSafeAreaInsets,
   SafeAreaView,
 } from "react-native-safe-area-context";
 // import {images} from "../constants";
-import Header from "@/components/Header";
+
 import { StatusBar } from "expo-status-bar";
 // import logo from "./logo.png";
 import { Redirect, router } from "expo-router";
 import CustomButton from "@/components/CustomButton";
 import {createUser} from "../../lib/appwrite"
+import { useGlobalContext } from "@/context/GlobalProvider";
 // import { useGlobalContext } from "../context/GlobalProvider";
 const { images } = require("../constants");
 // const { useGlobalContext } = require("../context/GlobalProvider");
@@ -19,12 +20,12 @@ const { images } = require("../constants");
 export default function Page() {
   useEffect(() => {}, []);
 
-
+const {isLoading, isLoggedIn} = useGlobalContext()
   
   console.log(images.logo);
   //  const { loading, isLogged } = useGlobalContext();
 
-  //  if (!loading && isLogged) return <Redirect href="/home" />;
+   if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
 
   return (
     <View className="bg-primary ">
@@ -61,7 +62,7 @@ export default function Page() {
             </Text>
             <CustomButton
               title="Continue with Email"
-              handlePress={() => router.push("/sign-in")}
+              handlePress={() => router.push("/home")}
               containerStyles="w-full mt-7"
               
             />
