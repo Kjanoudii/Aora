@@ -40,11 +40,11 @@ const TrendingItem = ({ activeItem, item }) => {
     >
       {play ? (
         <Video
-          className=" z-50 "
+          className=" z-50 w-56"
           source={{ uri: item.video }}
           style={{
-            width: 180,
-            height: 240,
+            width: 160,
+            height: 250,
             borderRadius: 16,
             marginTop: 12,
             zIndex: 99,

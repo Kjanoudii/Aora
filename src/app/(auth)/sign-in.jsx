@@ -39,7 +39,7 @@ const SignIn = () => {
 
     setIsLogged(true);
     try {
-      await signIn(email, password);
+     const result = await signIn(email, password);
       setUser(result);
       console.log(email, password);
       router.replace("/home");
@@ -49,6 +49,8 @@ const SignIn = () => {
     }
   };
 
+
+  // console.log("This is the user: ", user)
   return (
     <View className="bg-primary h-full">
       <SafeAreaView className="bg-primary h-full">

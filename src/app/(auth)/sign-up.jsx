@@ -38,16 +38,19 @@ const SignUp = () => {
     const { email, password, username } = data;
 
     try {
-      await createUser(email, password, username);
-
-      setUser(result);
+     const result= await createUser(email, password, username);
+      setIsSubmitting(false);
+      await setUser(result);
       setIsLogged(true);
       console.log(email, password, username);
-      // router.replace('/home')
+      console.log(user);
+      router.replace('/home')
       resetForm();
     } catch (error) {
-        Alert.alert("Error", error.message);
-    } 
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

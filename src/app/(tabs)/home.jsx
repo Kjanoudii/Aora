@@ -29,9 +29,8 @@ const Home = () => {
   
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#2b2b2b" }}>
-      <View style={{ flex: 1, backgroundColor: "#2b2b2b" }}>
-        
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#161622" }}>
+      <View style={{ flex: 1 }} className="bg-primary">
         <FlatList
           data={posts}
           keyExtractor={(item) => item.$id}
@@ -122,6 +121,7 @@ const Home = () => {
           }
         />
       </View>
+     
     </SafeAreaView>
   );
 };

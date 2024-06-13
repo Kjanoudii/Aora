@@ -20,7 +20,7 @@ const { images } = require("../constants");
 export default function Page() {
   useEffect(() => {}, []);
 
-const {isLoading, isLoggedIn} = useGlobalContext()
+const {isLoading, isLoggedIn, user, setUser} = useGlobalContext()
   
   console.log(images.logo);
   //  const { loading, isLogged } = useGlobalContext();
@@ -62,7 +62,7 @@ const {isLoading, isLoggedIn} = useGlobalContext()
             </Text>
             <CustomButton
               title="Continue with Email"
-              handlePress={() => router.push("/home")}
+              handlePress={() => router.push("/home ")}
               containerStyles="w-full mt-7"
               
             />
