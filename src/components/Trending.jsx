@@ -43,13 +43,13 @@ const TrendingItem = ({ activeItem, item }) => {
           className=" z-50 w-56"
           source={{ uri: item.video }}
           style={{
-            width: 160,
+            width: 180,
             height: 250,
             borderRadius: 16,
             marginTop: 12,
             zIndex: 99,
           }}
-          resizeMode={ResizeMode.CONTAIN}
+          resizeMode={ResizeMode.COVER}
           useNativeControls
           shouldPlay
           onPlaybackStatusUpdate={(status) => {

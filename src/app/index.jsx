@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, Image } from "react-native";
 import {
@@ -11,7 +10,7 @@ import { StatusBar } from "expo-status-bar";
 // import logo from "./logo.png";
 import { Redirect, router } from "expo-router";
 import CustomButton from "@/components/CustomButton";
-import {createUser} from "../../lib/appwrite"
+import { createUser } from "../../lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
 // import { useGlobalContext } from "../context/GlobalProvider";
 const { images } = require("../constants");
@@ -20,13 +19,15 @@ const { images } = require("../constants");
 export default function Page() {
   useEffect(() => {}, []);
 
-const {isLoading, isLoggedIn, user, setUser} = useGlobalContext()
-  
+   const { loading, isLogged } = useGlobalContext();
+
   console.log(images.logo);
+  // const { username, password } = user;
+ 
   //  const { loading, isLogged } = useGlobalContext();
 
-   if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
-
+  console.log("is Loading: ", loading, "is Logged in: ", isLogged);
+ if (!loading && isLogged) return <Redirect href="/home" />;
   return (
     <View className="bg-primary ">
       <SafeAreaView className="bg-primary h-full ">
@@ -62,14 +63,13 @@ const {isLoading, isLoggedIn, user, setUser} = useGlobalContext()
             </Text>
             <CustomButton
               title="Continue with Email"
-              handlePress={() => router.push("/home ")}
+              handlePress={() => router.push("/sign-in ")}
               containerStyles="w-full mt-7"
-              
             />
           </View>
         </ScrollView>
       </SafeAreaView>
-        <StatusBar backgroundColor="#161622" style="light" />
+      <StatusBar backgroundColor="#161622" style="light" />
     </View>
   );
 }

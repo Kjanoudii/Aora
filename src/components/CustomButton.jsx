@@ -23,7 +23,7 @@ isLoading
       </Text>
 
       {isLoading && (
-        <ActivityIndicator
+        <ActiviityIndicator
           animating={isLoading}
           color="#fff"
           size="small"

@@ -50,7 +50,7 @@ const TabsLayout = () => {
             },
           }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="bookMarks"
           options={{
             title: "Bookmark",
@@ -66,7 +66,7 @@ const TabsLayout = () => {
               );
             },
           }}
-        />
+        /> */}
         <Tabs.Screen
           name="Create"
           options={{

@@ -10,23 +10,24 @@ import EmptyState from "../../components/Empty";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import VideoCard from "../../components/VideoCard";
-
+import { useGlobalContext } from "@/context/GlobalProvider";
 const Home = () => {
-  const { data: posts, refetch } = useAppwrite(getAllPosts);
-  const { data: latestPosts } = useAppwrite(getLatestPosts);
+  const { data: posts, refetch:refreshAllPosts } = useAppwrite(getAllPosts);
+  const { data: latestPosts, refetch: refreshLatestPosts } =
+    useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
 
+  const { user } = useGlobalContext();
 
+  console.log(user);
 
-  
   const onRefresh = async () => {
     setRefreshing(true);
-    await refetch();
+    await refreshAllPosts();
+    await refreshLatestPosts();
     setRefreshing(false);
   };
-
-  
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#161622" }}>
@@ -72,7 +73,7 @@ const Home = () => {
                       color: "#ffffff",
                     }}
                   >
-                    JSMastery
+                   {user.username}
                   </Text>
                 </View>
 
@@ -121,10 +122,8 @@ const Home = () => {
           }
         />
       </View>
-     
     </SafeAreaView>
   );
 };
 
 export default Home;
-
