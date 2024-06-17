@@ -19,9 +19,10 @@ const { images } = require("../constants");
 export default function Page() {
   useEffect(() => {}, []);
 
-   const { loading, isLogged } = useGlobalContext();
+   const { loading, isLogged, user } = useGlobalContext();
 
   console.log(images.logo);
+  console.log(user)
   // const { username, password } = user;
  
   //  const { loading, isLogged } = useGlobalContext();

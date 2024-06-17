@@ -20,7 +20,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { setUser, setIsLogged } = useGlobalContext();
+  const { setUser, setIsLogged, user } = useGlobalContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const initialValues = {
@@ -34,6 +34,9 @@ const SignUp = () => {
     password: Yup.string().required("Password is required"),
   });
 
+
+  console.log(user);
+
   const submit = async (data, { resetForm }) => {
     const { email, password, username } = data;
 
@@ -43,7 +46,7 @@ const SignUp = () => {
       await setUser(result);
       setIsLogged(true);
       console.log(email, password, username);
-      console.log(user);
+       console.log(user)
       router.replace('/home')
       resetForm();
     } catch (error) {

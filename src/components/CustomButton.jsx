@@ -2,11 +2,10 @@ import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 
 const CustomButton = ({
   title,
- handlePress,
-containerStyles,
-isLoading
-//   textStyles,
- 
+  handlePress,
+  containerStyles,
+  isLoading,
+  //   textStyles,
 }) => {
   return (
     <TouchableOpacity
@@ -16,14 +15,11 @@ isLoading
       justify-center items-center ${containerStyles} 
        
       }`}
-    
     >
-      <Text className={`text-primary font-psemibold text-lg `}>
-        {title}
-      </Text>
+      <Text className={`text-primary font-psemibold text-lg `}>{title}</Text>
 
       {isLoading && (
-        <ActiviityIndicator
+        <ActivityIndicator
           animating={isLoading}
           color="#fff"
           size="small"

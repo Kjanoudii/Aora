@@ -30,11 +30,13 @@ const Create = () => {
     prompt: "",
   });
 
+  console.log("here", user.$id); /// here it is defined
+
   const openPicker = async (selectType) => {
     const result = await DocumentPicker.getDocumentAsync({
       type:
         selectType === "image"
-          ? ["image/png", "image/jpg", "image/jpeg", "image/gif"]
+          ? ["image/png", "image/jpg", "image/jpeg"]
           : ["video/mp4", "video/gif"],
     });
 
@@ -42,14 +44,14 @@ const Create = () => {
       if (selectType === "image") {
         setForm({
           ...form,
-          thumbnail: result,
+          thumbnail: result.assets[0],
         });
       }
 
       if (selectType === "video") {
         setForm({
           ...form,
-          video: result,
+          video: result.assets[0],
         });
       }
     } else {
@@ -68,7 +70,7 @@ const Create = () => {
     ) {
       return Alert.alert("Please provide all fields");
     }
-
+    console.log(user.$id); /// here it is undefined
     setUploading(true);
     try {
       await createVideoPost({
@@ -91,7 +93,9 @@ const Create = () => {
       setUploading(false);
     }
   };
-
+  if (!user) {
+    return <Text>Loading...</Text>;
+  }
   return (
     <SafeAreaView
       className="bg-primary h-full"

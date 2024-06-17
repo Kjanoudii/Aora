@@ -8,15 +8,29 @@
       "output": "static",
       "bundler": "metro"
     },
-    "android":{
-      "package":"com.khaled.aora",
+    "android": {
+      "package": "com.khaled.aora",
       "jsEngine": "hermes"
     },
     "plugins": [
       "expo-router"
     ],
     "name": "my-app",
-    "slug": "my-app"
-   
+    "slug": "my-app",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ddf4f5eb-8063-4c5d-a764-59edae19b8ec"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ddf4f5eb-8063-4c5d-a764-59edae19b8ec"
+    },
+    "ios": {}
   }
 }

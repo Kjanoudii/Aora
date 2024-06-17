@@ -24,6 +24,7 @@ const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { setUser, setIsLogged } = useGlobalContext();
 
+  // console.log(user.$id);
   // const navitage = useNavigation()
   const initialValues = {
     email: "",
@@ -39,7 +40,8 @@ const SignIn = () => {
 
     setIsLogged(true);
     try {
-     const result = await signIn(email, password);
+      const result = await signIn(email, password);
+      console.log(result);
       setUser(result);
       console.log(email, password);
       router.replace("/home");
@@ -48,7 +50,6 @@ const SignIn = () => {
       Alert.alert("Error", error.message);
     }
   };
-
 
   // console.log("This is the user: ", user)
   return (
