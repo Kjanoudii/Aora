@@ -16,5 +16,5 @@
     "src/constants/icons.js",
     "src/app/index.jsx",
     "src/constants/images.js"
-, "src/app/(auth)/sign-in.jsx", "src/app/_layout.jsx", "src/app/(auth)/sign-up.jsx", "src/components/CustomButton.jsx", "src/app/(auth)/_layout.jsx", "src/app/(tabs)/_layout.jsx", "src/app/(tabs)/bookMarks.jsx", "src/app/(tabs)/Create.jsx", "src/app/(tabs)/home.jsx", "src/app/(tabs)/profile.jsx", "src/app/search/[query].jsx"  ]
+, "src/app/(auth)/sign-in.jsx", "src/app/_layout.jsx", "src/app/(auth)/sign-up.jsx", "src/components/CustomButton.jsx", "src/app/(auth)/_layout.jsx", "src/app/(tabs)/_layout.jsx", "src/app/(tabs)/bookMarks.jsx", "src/app/(tabs)/Create.jsx", "src/app/(tabs)/home.jsx", "src/app/(tabs)/profile.jsx", "src/app/search/[query].jsx", "src/components/FormField.jsx"  ]
 }
