@@ -5,3 +5,4 @@
 [build.environment]
   EXPO_WEBPACK_OFFLINE = "true"
   EXPO_APP_ENTRYPOINT = "expo-router/entry"
+
