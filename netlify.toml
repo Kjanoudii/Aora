@@ -1,5 +1,5 @@
 [build]
-  command = "npx expo export:web"
+  command = "expo build:web"
   publish = "web-build"
 
 [build.environment]

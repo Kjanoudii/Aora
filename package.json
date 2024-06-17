@@ -9,7 +9,7 @@
      "build": "expo build:web",
     "web": "expo start --web",
 
-    "build:web": "expo export:web"
+    "build:web": "expo build:web"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.17",
